@@ -3,7 +3,8 @@ Since we are required to use the GRPC framework to build our APIs, we chose Pyth
 
 
 - A list of assignments for everyone in your team.\
-Spring 1 Assignments\
+
+Spring 1 Assignments
 
 Everyone ==> Code base exploration/FAQ document\ 
 Charles ==> API 1\
