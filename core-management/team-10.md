@@ -1,11 +1,10 @@
 - A description of the technology you are planning to use to build your APIs.\
-Since we are required to use the GRPC framework to build our APIs, we chose Python since it seems like it has the most documentation available in relation to GRPC. GRPC is a framework that allows fast and secure communication between microservices. It offers a system of serialized structured data which acts as the data payload between parties. Python is just python :inspect: \
+Since we are required to use the GRPC framework to build our APIs, we chose Python since it seems like it has the most documentation available in relation to GRPC. GRPC is a framework that allows fast and secure communication between microservices. It offers a system of serialized structured data which acts as the data payload between parties. Python is just python :inspect: 
 
 
-- A list of assignments for everyone in your team.\
+- A list of assignments for everyone in your team.
 
 Spring 1 Assignments
-
 Everyone ==> Code base exploration/FAQ document\ 
 Charles ==> API 1\
 Nick ==> APIs 2, 3\
