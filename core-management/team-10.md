@@ -3,7 +3,7 @@ Since we are required to use the GRPC framework to build our APIs, we chose Pyth
 
 
 - A list of assignments for everyone in your team.\
-Spring 1 Assignments
+Spring 1 Assignments\
 
 Everyone ==> Code base exploration/FAQ document\ 
 Charles ==> API 1\
@@ -12,7 +12,7 @@ Brian ==> APIs 4, 5\
 Haley ==> APIs 6, 7\
 Jhanvi ==> APIs 8, 9\
 Aaron ==> APIs 10\
-This is flexible.\
+This is flexible.
 
 - A link to your project plan (GitHub Project, Trello, etc.). If you are managing the project using Excel or Google Sheets, provide a link to the document. BTW, your Project Manager shall own the project plan and keep it up to date.\
-[Jira Board](osiris-function-library-core.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog)\
+[Jira Board](osiris-function-library-core.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog)
