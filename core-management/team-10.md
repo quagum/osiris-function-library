@@ -1,5 +1,5 @@
 - A description of the technology you are planning to use to build your APIs.\
-Since we are required to use the GRPC framework to build our APIs, we chose Python since it seems like it has the most documentation available in relation to GRPC. GRPC is a framework that allows fast and secure communication between microservices. It offers a system of serialized structured data which acts as the data payload between parties. Python is just python :inspect: 
+Since we are required to use the GRPC framework to build our APIs, we chose Python since it seems like it has the most documentation available in relation to GRPC. GRPC is a framework that allows fast and secure communication between microservices. It offers a system of serialized structured data which acts as the data payload between parties. Python is just python :inspect:. We'll be using Pytest for testing.
 
 
 - A list of assignments for everyone in your team.
