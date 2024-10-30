@@ -26,5 +26,17 @@ def unpublishFunction(function_name: str) -> bool:
     pass
 
 def archiveFunction(function_name: str) -> bool:
-    pass
+    '''Description:
+        The archiveFunction API archives a function, which removes it from active usage but retains its information and code in the library for future reference.
+        Archived functions can be restored later if needed.
 
+        Input:
+        function_name: The name of the function to archive. (string)
+        
+        Output:
+        True if the function is successfully archived, False otherwise.
+    '''
+    try:
+        return unpublishFunction(function_name)
+    except:
+        return False 
