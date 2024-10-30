@@ -1,0 +1,14 @@
+# Use the official Python image from the Docker Hub
+FROM python:3.9
+
+# Set the working directory in the container
+WORKDIR /core-management
+
+# Copy the current directory contents into the container at /core-management
+COPY . /core-management
+
+# Install the necessary dependencies
+RUN pip install --no-cache-dir pytest==6.2.5 unittest2 mock
+
+# Command to run tests
+CMD ["pytest"]

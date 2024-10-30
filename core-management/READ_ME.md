@@ -1,6 +1,6 @@
-i'll figure out the docker stuff soon idk how it works LOL
-for now...
+CURRENTLY ONLY RUNS TEST
 
-    1. create venv 
-    2. run tests using `pytest test`
-    
+docker build -t your_image_name .
+docker run --rm your_image_name
+
+
