@@ -2,7 +2,6 @@
 function_library = {}
 
 def addFunctionToLibrary(function_name: str, code: str, runtime: str, version: str = "1.0") -> bool:
-
     # Create a key for the database entry
     key = function_name + '_' + version
 
