@@ -8,7 +8,7 @@ WORKDIR /core-management
 COPY . /core-management
 
 # Install the necessary dependencies
-RUN pip install --no-cache-dir pytest==6.2.5 unittest2 mock
+RUN pip install --no-cache-dir pytest==6.2.5 unittest2 mock grpcio grpcio-tools
 
 # Command to run tests
 CMD ["pytest"]
