@@ -26,6 +26,5 @@ def run():
 
         # Print the response from the server
         print(f"AddFunction response: success={add_function_response.success}, message='{add_function_response.message}'")
-
 if __name__ == '__main__':
     run()

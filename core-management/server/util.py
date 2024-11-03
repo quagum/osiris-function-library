@@ -7,7 +7,7 @@ def addFunctionToLibrary(function_name: str, code: str, runtime: str, version: s
 
     # Check if function already exists
     if key in function_library:
-        return False
+        return False, f"Function {function_name} version {version} already exists."
 
     # If it doesn't exist, create the database entry
     function_library[key] = {
@@ -16,7 +16,7 @@ def addFunctionToLibrary(function_name: str, code: str, runtime: str, version: s
         'runtime_env': runtime,
         'version': version
         }
-    return True
+    return True, f"Function {function_name} version {version} added successfully."
 
 def updateFunctionInLibrary(function_name: str, code: str, version: str) -> bool:
     pass
