@@ -1,10 +1,9 @@
 import grpc
 from concurrent import futures
-import core_management_pb2
-import core_management_pb2_grpc
-import util
-# Placeholder database
-function_library = {}
+from core_management import core_management_pb2
+from core_management import core_management_pb2_grpc
+from core_management.server import util
+from core_management.server.data_store import function_library
 
 class CoreManagementServicer(core_management_pb2_grpc.CoreManagementServicer):
     def AddFunction(self, request, context):
