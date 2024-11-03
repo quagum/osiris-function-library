@@ -1,14 +1,26 @@
-# Use the official Python image from the Docker Hub
+# Start with a Python base image
 FROM python:3.9
 
-# Set the working directory in the container
+# Set the working directory
 WORKDIR /core-management
 
-# Copy the current directory contents into the container at /core-management
-COPY . /core-management
+# Copy the proto file
+COPY proto/core_management.proto .
 
-# Install the necessary dependencies
-RUN pip install --no-cache-dir pytest==6.2.5 unittest2 mock grpcio grpcio-tools
+# Install gRPC tools
+RUN pip install pytest==6.2.5 unittest2 mock grpcio grpcio-tools
 
-# Command to run tests
-CMD ["pytest"]
+# Generate the gRPC files
+RUN python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. core_management.proto
+
+# Copy the server and client directories
+COPY server/ ./server/
+COPY client/ ./client/
+
+# Set the PYTHONPATH to include the current working directory
+ENV PYTHONPATH="/core-management"
+
+# Start your server by default
+CMD ["sh", "-c", "python server/server.py & sleep 2; python client/client.py"]
+
+
