@@ -1,6 +1,6 @@
 import grpc
-import core_management_pb2
-import core_management_pb2_grpc
+from core_management import core_management_pb2
+from core_management import core_management_pb2_grpc
 
 def run():
     # Connect to the gRPC server
