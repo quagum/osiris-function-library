@@ -15,4 +15,4 @@ Charles ==> API 10\
 This is flexible.
 
 - A link to your project plan (GitHub Project, Trello, etc.). If you are managing the project using Excel or Google Sheets, provide a link to the document. BTW, your Project Manager shall own the project plan and keep it up to date.\
-[Jira Board](osiris-function-library-core.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog)
+[Jira Board](https://osiris-function-library-core.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog)
