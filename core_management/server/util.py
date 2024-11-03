@@ -1,15 +1,12 @@
 from server.data_store import function_library
 
 def addFunctionToLibrary(function_name: str, code: str, runtime: str, version: str = "1.0") -> bool:
-    # Create a key for the database entry
-    key = function_name + '_' + version
-
     # Check if function already exists
-    if key in function_library:
+    if function_name in function_library:
         return False, f"Function {function_name} version {version} already exists."
 
     # If it doesn't exist, create the database entry
-    function_library[key] = {
+    function_library[function_name] = {
         'name': function_name,
         'code': code,
         'runtime_env': runtime,
