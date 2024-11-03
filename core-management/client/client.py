@@ -4,7 +4,7 @@ import core_management_pb2_grpc
 
 def run():
     # Connect to the gRPC server
-    with grpc.insecure_channel('localhost:50051') as channel:
+    with grpc.insecure_channel('localhost:1500') as channel:
         stub = core_management_pb2_grpc.CoreManagementStub(channel)
 
         # Define your function details
