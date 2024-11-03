@@ -27,7 +27,6 @@ def updateFunctionInLibrary(function_name: str, code: str, version: str) -> bool
             })
         return True
     return False #function does not exist in library, cannot update
-    pass
 
 def removeFunctionFromLibrary(function_name: str) -> bool:
     '''Description:
