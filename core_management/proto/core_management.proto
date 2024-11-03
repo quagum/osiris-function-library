@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package core_management;
 
+// API 1 : addFunctionToLibrary
 // Request message for adding a function
 message AddFunctionRequest {
     string function_name = 1;
@@ -16,7 +17,22 @@ message AddFunctionResponse {
     string message = 2; // Make sure this line exists
 }
 
+// API 10
+message ArchiveFunctionRequest {
+    string function_name = 1;
+}
+
+// Response message for adding a function
+message ArchiveFunctionResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+
+
+
 // Service definition
 service CoreManagement {
     rpc AddFunction(AddFunctionRequest) returns (AddFunctionResponse);
+    rpc ArchiveFunction(ArchiveFunctionRequest) returns (ArchiveFunctionResponse);
 }

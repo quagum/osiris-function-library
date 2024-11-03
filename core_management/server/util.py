@@ -53,6 +53,10 @@ def archiveFunction(function_name: str) -> bool:
         True if the function is successfully archived, False otherwise.
     '''
     try:
-        return unpublishFunction(function_name)
+        if function_name in function_library:
+            function_library[function_name]["archive_status"] = True 
+            return True, f"Function {function_name} archived."
+        else:
+            return False, f"Function {function_name} not in function library."
     except:
-        return False 
+        return False, f"Unexpected error archiving function {function_name}."
