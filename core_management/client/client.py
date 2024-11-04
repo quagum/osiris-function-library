@@ -19,7 +19,10 @@ def run():
             runtime_env=runtime_env,
             version=version
         )
-
+        rollback_function_request = core_management_pb2.RollbackFunctionVersionRequest(
+            function_name=function_name,
+            target_version="1.0"
+        )
         # Publish to archive a function
         publish_function_request = core_management_pb2.PublishFunctionRequest(
             function_name=function_name
@@ -35,12 +38,14 @@ def run():
         archive_function_response = stub.ArchiveFunction(archive_function_request)
         publish_function_response = stub.PublishFunction(publish_function_request)
         unpublish_function_response = stub.UnpublishFunction(publish_function_request)
+        rollback_function_response = stub.RollbackFunctionVersion(rollback_function_request)
 
         # Print the response from the server
         print(f"AddFunction response: success={add_function_response.success}, message='{add_function_response.message}'")
         print(f"PublishFunction response: success={publish_function_response.success}, message='{publish_function_response.message}'")
         print(f"UnpublishFunction response: success={publish_function_response.success}, message='{unpublish_function_response.message}'")
         print(f"ArchiveFunction response: success={archive_function_response.success}, message='{archive_function_response.message}'")
+        print(f"RollbackFunctionVersion response: success={rollback_function_response.success}, message='{rollback_function_response.message}'")
 
 if __name__ == '__main__':
     run()

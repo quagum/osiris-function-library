@@ -10,7 +10,8 @@ def addFunctionToLibrary(function_name: str, code: str, runtime: str, version: s
         'name': function_name,
         'code': code,
         'runtime_env': runtime,
-        'version': version
+        'version': version,
+        'versions': {version: code}
         }
     return True, f"Function {function_name} version {version} added successfully."
 
@@ -27,7 +28,16 @@ def getFunctionDetails(function_name: str) -> dict:
     pass
 
 def rollbackFunctionVersion(function_name: str, target_version: str) -> bool:
-    pass
+    if function_name in function_library:
+        # Check if the target version exists in the versions dictionary
+        if target_version in function_library[function_name]['versions']:
+            # Rollback to the specified version
+            function_library[function_name]['code'] = function_library[function_name]['versions'][target_version]
+            function_library[function_name]['version'] = target_version
+            return True, f"Function {function_name} rolled back to version {target_version}."
+        else:
+            return False, f"Version {target_version} not found for function {function_name}."
+    return False, f"Function {function_name} not found in the library."
 
 def searchFunctionByRuntime(runtime: str) -> list:
     pass

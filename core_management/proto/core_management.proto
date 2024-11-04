@@ -40,10 +40,24 @@ message ArchiveFunctionResponse {
     string message = 2;
 }
 
+// Request message for rollback function version
+message RollbackFunctionVersionRequest {
+    string function_name = 1;
+    string target_version = 2;
+}
+
+// Response message for rollback function version
+message RollbackFunctionVersionResponse {
+    bool success = 1;
+    string message = 2;
+}
+
 // Service definition
 service CoreManagement {
     rpc AddFunction(AddFunctionRequest) returns (AddFunctionResponse);
     rpc PublishFunction(PublishFunctionRequest) returns (PublishFunctionResponse);
     rpc UnpublishFunction(PublishFunctionRequest) returns (PublishFunctionResponse);
     rpc ArchiveFunction(ArchiveFunctionRequest) returns (ArchiveFunctionResponse);
+    rpc RollbackFunctionVersion(RollbackFunctionVersionRequest) returns (RollbackFunctionVersionResponse); // Add this line if missing
+
 }
