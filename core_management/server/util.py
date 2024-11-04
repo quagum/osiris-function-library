@@ -15,10 +15,43 @@ def addFunctionToLibrary(function_name: str, code: str, runtime: str, version: s
     return True, f"Function {function_name} version {version} added successfully."
 
 def updateFunctionInLibrary(function_name: str, code: str, version: str) -> bool:
-    pass
+    '''Description:
+        The updateFunctionInLibrary API updates the code and version of an existing function in the library.
+        It requires the function name, new code, and a new version number.
+        Input:
+        function_name: The name of the function to update (string)
+        code: The updated source code for the function (string)
+        version: The new version of the function (string)
+        Output:
+        True if the function is successfully updated, False otherwise
+    '''
+    #check if function already exists
+    if function_name in function_library:
+        #perform update
+        function_library[function_name].update({
+            'code': code,
+            'version': version
+            })
+        return True, f"Function {function_name} version {version} updated successfully."
+    return False, f"Function {function_name} version {version} update failed."
+    #function does not exist in library, cannot update
 
 def removeFunctionFromLibrary(function_name: str) -> bool:
-    pass
+    '''Description:
+        The removeFunctionFromLibrary API removes a function from the library based on its name.
+        The function returns True if the function is successfully removes, False otherwise.
+        
+        Input: 
+        function_name: The name of the function to be removed (string)
+        Output:
+        True if the function if successfully removed, False otherwise
+        '''
+    #Check if function is in library
+    if function_name in function_library:
+        #delete entry using del
+        del function_library[function_name]
+        return True, f"Function {function_name} deleted successfully."
+    return False, f"Function {function_name} delete failed."
 
 def listFunctionsInLibrary() -> list:
     pass

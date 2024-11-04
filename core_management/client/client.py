@@ -20,21 +20,37 @@ def run():
             version=version
         )
 
-        # Publish to archive a function
+        # Create a request to publish a function
         publish_function_request = core_management_pb2.PublishFunctionRequest(
             function_name=function_name
+        )
+
+        # Create a request to update a function
+        update_function_request = core_management_pb2.UpdateFunctionRequest(
+            function_name=function_name,
+            code=code,
+            version=version,
+        )
+
+        # Create a request to remove a function
+        delete_function_request = core_management_pb2.RemoveFunctionRequest(
+            function_name=function_name,
         )
 
         # Create a request to archive a function
         archive_function_request = core_management_pb2.ArchiveFunctionRequest(
             function_name=function_name
         )
+
+        
    
         # Call the AddFunction method on the stub
         add_function_response = stub.AddFunction(add_function_request)
-        archive_function_response = stub.ArchiveFunction(archive_function_request)
+        update_function_response = stub.UpdateFunction(update_function_request)
+        delete_function_response = stub.DeleteFunction(delete_function_request)
         publish_function_response = stub.PublishFunction(publish_function_request)
         unpublish_function_response = stub.UnpublishFunction(publish_function_request)
+        archive_function_response = stub.ArchiveFunction(archive_function_request)
 
         # Print the response from the server
         print(f"AddFunction response: success={add_function_response.success}, message='{add_function_response.message}'")
