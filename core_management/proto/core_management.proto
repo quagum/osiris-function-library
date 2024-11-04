@@ -16,7 +16,20 @@ message AddFunctionResponse {
     string message = 2; // Make sure this line exists
 }
 
+// Request message for publish/unpublish a function 
+message FunctionRequest {
+    string function_name = 1;
+}
+
+// Response message for publish/unpublish a function
+message FunctionResponse {
+    bool success = 1;
+    string message = 2;
+}
+
 // Service definition
 service CoreManagement {
     rpc AddFunction(AddFunctionRequest) returns (AddFunctionResponse);
+    rpc PublishFunction(FunctionRequest) returns (FunctionResponse);
+    rpc UnpublishFunction(FunctionRequest) returns (FunctionResponse);
 }
