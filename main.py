@@ -10,6 +10,16 @@ class CoreManagementServicer(core_management_pb2_grpc.CoreManagementServicer):
         success, message = util.addFunctionToLibrary(request.function_name, request.code, request.runtime_env, request.version)
         return core_management_pb2.AddFunctionResponse(success=success, message=message)
     
+    def PublishFunction(self, request, context):
+        success = util.publishFunction(request.function_name)
+        message = f"Function {request.function_name} published successfully." if success else f"Failed to publish function {request.function_name}."
+        return core_management_pb2.PublishFunctionResponse(success=success, message=message)
+    
+    def UnpublishFunction(self, request, context):
+        success = util.unpublishFunction(request.function_name)
+        message = f"Function {request.function_name} unpublished successfully." if success else f"Failed to unpublish function {request.function_name}."
+        return core_management_pb2.PublishFunctionResponse(success=success, message=message)
+      
     def ArchiveFunction(self, request, context):
         success, message = util.archiveFunction(request.function_name)
         return core_management_pb2.ArchiveFunctionResponse(success=success, message=message)

@@ -32,6 +32,9 @@ def run():
         # Print the response from the server
         print(f"AddFunction response: success={add_function_response.success}, message='{add_function_response.message}'")
         print(f"ArchiveFunction response: success={archive_function_response.success}, message='{archive_function_response.message}'")
+        
+        publish_function_request = core_management_pb2.PublishFunctionRequest(function_name=function_name)
+        publish_function_response = stub.PublishFunction(publish_function_request)
 
         # API 4: ListFunctions
         # Call the ListFunctions method on the stub
@@ -60,6 +63,15 @@ def run():
             print(f" - Version: {func.version}")
         else:
             print("GetFunctionDetails response: Function not found")
+
+        if publish_function_response.success:
+            print(f"The function '{function_name}' was published successfully.")
+
+        unpublish_function_response = stub.UnpublishFunction(publish_function_request)
+
+        if unpublish_function_response.success:
+            print(f"The function '{function_name}' was unpublished successfully.")
+ 
 
 if __name__ == '__main__':
     run()
