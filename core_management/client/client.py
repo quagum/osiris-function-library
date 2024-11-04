@@ -20,21 +20,27 @@ def run():
             version=version
         )
 
+        # Publish to archive a function
+        publish_function_request = core_management_pb2.PublishFunctionRequest(
+            function_name=function_name
+        )
+
         # Create a request to archive a function
         archive_function_request = core_management_pb2.ArchiveFunctionRequest(
             function_name=function_name
         )
-
+   
         # Call the AddFunction method on the stub
         add_function_response = stub.AddFunction(add_function_request)
         archive_function_response = stub.ArchiveFunction(archive_function_request)
+        publish_function_response = stub.PublishFunction(publish_function_request)
+        unpublish_function_response = stub.UnpublishFunction(publish_function_request)
 
         # Print the response from the server
         print(f"AddFunction response: success={add_function_response.success}, message='{add_function_response.message}'")
+        print(f"PublishFunction response: success={publish_function_response.success}, message='{publish_function_response.message}'")
+        print(f"UnpublishFunction response: success={publish_function_response.success}, message='{unpublish_function_response.message}'")
         print(f"ArchiveFunction response: success={archive_function_response.success}, message='{archive_function_response.message}'")
-        
-        publish_function_request = core_management_pb2.PublishFunctionRequest(function_name=function_name)
-        publish_function_response = stub.PublishFunction(publish_function_request)
 
         # API 4: ListFunctions
         # Call the ListFunctions method on the stub
@@ -72,6 +78,5 @@ def run():
         if unpublish_function_response.success:
             print(f"The function '{function_name}' was unpublished successfully.")
  
-
 if __name__ == '__main__':
     run()
