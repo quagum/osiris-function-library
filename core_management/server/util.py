@@ -33,18 +33,16 @@ def searchFunctionByRuntime(runtime: str) -> list:
     pass
 
 def publishFunction(function_name: str) -> bool:
-    key = next((k for k in function_library if k.startswith(function_name + '_')), None)
-    if key and not function_library[key].get('published', False):
-        function_library[key]['published'] = True
-        return True
-    return False
+    if function_name in function_library:
+        function_library[function_name]['published'] = True
+        return True, f"Function {function_name} published successfully." 
+    return False, f"Failed to publish function {function_name}."
 
 def unpublishFunction(function_name: str) -> bool:
-    key = next((k for k in function_library if k.startswith(function_name + '_')), None)
-    if key and function_library[key].get('published', False):
-        function_library[key]['published'] = False
-        return True
-    return False
+    if function_name in function_library:
+        function_library[function_name]['published'] = False
+        return True, f"Function {function_name} unpublished successfully." 
+    return False, f"Failed to unpublish function {function_name}."
 
 def archiveFunction(function_name: str) -> bool:
     '''Description:
