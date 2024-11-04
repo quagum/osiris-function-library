@@ -39,7 +39,22 @@ def updateFunctionInLibrary(function_name: str, code: str, version: str) -> bool
     return False #function does not exist in library, cannot update
 
 def removeFunctionFromLibrary(function_name: str) -> bool:
-    pass
+    '''Description:
+        The removeFunctionFromLibrary API removes a function from the library based on its name.
+        The function returns True if the function is successfully removes, False otherwise.
+        
+        Input: 
+        function_name: The name of the function to be removed (string)
+
+        Output:
+        True if the function if successfully removed, False otherwise
+        '''
+    #Check if function is in library
+    if function_name in function_library:
+        #delete entry using del
+        del function_library[function_name]
+        return True
+    return False
 
 def listFunctionsInLibrary() -> list:
     pass
