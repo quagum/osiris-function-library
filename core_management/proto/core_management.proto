@@ -75,5 +75,6 @@ service CoreManagement {
     rpc UnpublishFunction(PublishFunctionRequest) returns (PublishFunctionResponse);
     rpc ArchiveFunction(ArchiveFunctionRequest) returns (ArchiveFunctionResponse);
     rpc RollbackFunctionVersion(RollbackFunctionVersionRequest) returns (RollbackFunctionVersionResponse); // Add this line if missing
+    rpc SearchFunctionByRuntime(SearchFunctionByRuntimeRequest) returns (SearchFunctionByRuntimeResponse); // Add this line
 
 }
