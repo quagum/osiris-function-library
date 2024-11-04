@@ -20,11 +20,29 @@ def updateFunctionInLibrary(function_name: str, code: str, version: str) -> bool
 def removeFunctionFromLibrary(function_name: str) -> bool:
     pass
 
-def listFunctionsInLibrary() -> list:
-    pass
+def listFunctionsInLibrary():
+    """Return a list of all functions in the library."""
+    return [
+        {
+            'name': func['name'],
+            'code': func['code'],
+            'runtime_env': func['runtime_env'],
+            'version': func['version']
+        }
+        for func in function_library.values()
+    ]
 
-def getFunctionDetails(function_name: str) -> dict:
-    pass
+def getFunctionDetails(function_name: str):
+    """Return details of a specific function."""
+    func = function_library.get(function_name)
+    if func:
+        return {
+            'name': func['name'],
+            'code': func['code'],
+            'runtime_env': func['runtime_env'],
+            'version': func['version']
+        }
+    return None
 
 def rollbackFunctionVersion(function_name: str, target_version: str) -> bool:
     pass
