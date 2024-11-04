@@ -32,6 +32,10 @@ def run():
         archive_function_request = core_management_pb2.ArchiveFunctionRequest(
             function_name=function_name
         )
+
+        search_function_by_runtime_request = core_management_pb2.SearchFunctionByRuntimeRequest(
+            runtime=runtime_env 
+        )
    
         # Call the AddFunction method on the stub
         add_function_response = stub.AddFunction(add_function_request)
@@ -39,6 +43,7 @@ def run():
         publish_function_response = stub.PublishFunction(publish_function_request)
         unpublish_function_response = stub.UnpublishFunction(publish_function_request)
         rollback_function_response = stub.RollbackFunctionVersion(rollback_function_request)
+        search_function_by_runtime_response = stub.SearchFunctionByRuntime(search_function_by_runtime_request)
 
         # Print the response from the server
         print(f"AddFunction response: success={add_function_response.success}, message='{add_function_response.message}'")
@@ -46,6 +51,9 @@ def run():
         print(f"UnpublishFunction response: success={publish_function_response.success}, message='{unpublish_function_response.message}'")
         print(f"ArchiveFunction response: success={archive_function_response.success}, message='{archive_function_response.message}'")
         print(f"RollbackFunctionVersion response: success={rollback_function_response.success}, message='{rollback_function_response.message}'")
+        print("SearchFunctionByRuntime response:")
+        for func in search_function_by_runtime_response.functions:
+            print(f"Function Name: {func.function_name}, Version: {func.version}")
 
 if __name__ == '__main__':
     run()

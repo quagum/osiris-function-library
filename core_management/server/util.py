@@ -27,6 +27,7 @@ def listFunctionsInLibrary() -> list:
 def getFunctionDetails(function_name: str) -> dict:
     pass
 
+# API 6
 def rollbackFunctionVersion(function_name: str, target_version: str) -> bool:
     if function_name in function_library:
         # Check if the target version exists in the versions dictionary
@@ -39,8 +40,18 @@ def rollbackFunctionVersion(function_name: str, target_version: str) -> bool:
             return False, f"Version {target_version} not found for function {function_name}."
     return False, f"Function {function_name} not found in the library."
 
+# API 7 - Allow for searching functions in the library based on runtime environment
 def searchFunctionByRuntime(runtime: str) -> list:
-    pass
+    matching_functions = []
+    for function_name, function_data in function_library.items():
+        # Check if the runtime environment matches the specified runtime needed
+        if function_data.get("runtime_env") == runtime:
+            # Append the function name and version to the functions list that match
+            matching_functions.append({
+                "function_name": function_name,
+                "version": function_data.get("version")
+            })
+    return matching_functions
 
 def publishFunction(function_name: str) -> bool:
     if function_name in function_library:
