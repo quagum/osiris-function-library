@@ -10,6 +10,15 @@ def test_success_add_function():
     util.addFunctionToLibrary = MagicMock(return_value=True)
     assert util.addFunctionToLibrary("function_name") == True    
 
+#update_function tests
+def test_fail_update_function():
+    util.updateFunctionInLibrary = MagicMock(return_value=False)
+    assert util.updateFunctionInLibrary("function_name", "code", "version") == False
+
+def test_success_update_function():
+    util.updateFunctionInLibrary = MagicMock(return_value=True)
+    assert util.updateFunctionInLibrary("function_name", "code", "version") == True
+
 #archive_function tests
 def test_fail_archive_function():
     util.archiveFunction = MagicMock(return_value=False)
