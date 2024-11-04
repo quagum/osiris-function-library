@@ -33,5 +33,33 @@ def run():
         print(f"AddFunction response: success={add_function_response.success}, message='{add_function_response.message}'")
         print(f"ArchiveFunction response: success={archive_function_response.success}, message='{archive_function_response.message}'")
 
+        # API 4: ListFunctions
+        # Call the ListFunctions method on the stub
+        list_functions_request = core_management_pb2.ListFunctionsRequest()
+        list_functions_response = stub.ListFunctions(list_functions_request)
+        
+        # Print the response from ListFunctions
+        print("ListFunctions response:")
+        for function in list_functions_response.functions:
+            print(f" - Name: {function.name}, Runtime: {function.runtime_env}, Version: {function.version}")
+
+        # API 5: GetFunctionDetails
+        # Call the GetFunctionDetails method on the stub
+        get_function_details_request = core_management_pb2.GetFunctionDetailsRequest(
+            function_name=function_name
+        )
+        get_function_details_response = stub.GetFunctionDetails(get_function_details_request)
+
+        # Print the response from GetFunctionDetails
+        if get_function_details_response.function.name:
+            func = get_function_details_response.function
+            print("GetFunctionDetails response:")
+            print(f" - Name: {func.name}")
+            print(f" - Code: {func.code}")
+            print(f" - Runtime Environment: {func.runtime_env}")
+            print(f" - Version: {func.version}")
+        else:
+            print("GetFunctionDetails response: Function not found")
+
 if __name__ == '__main__':
     run()

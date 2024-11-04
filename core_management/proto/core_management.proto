@@ -2,6 +2,14 @@ syntax = "proto3";
 
 package core_management;
 
+// A message representing a function
+message Function {
+    string name = 1;
+    string code = 2;
+    string runtime_env = 3;
+    string version = 4;
+}
+
 // API 1 : addFunctionToLibrary
 // Request message for adding a function
 message AddFunctionRequest {
@@ -15,6 +23,26 @@ message AddFunctionRequest {
 message AddFunctionResponse {
     bool success = 1;
     string message = 2; // Make sure this line exists
+}
+
+// API 4: ListFunctions
+// Request message for listing all functions (no additional input needed)
+message ListFunctionsRequest {}
+
+// Response message for listing functions
+message ListFunctionsResponse {
+    repeated Function functions = 1;
+}
+
+// API 5: GetFunctionDetails
+// Request message for getting function details
+message GetFunctionDetailsRequest {
+    string function_name = 1;
+}
+
+// Response message for getting function details
+message GetFunctionDetailsResponse {
+    Function function = 1;
 }
 
 // API 10
@@ -35,4 +63,6 @@ message ArchiveFunctionResponse {
 service CoreManagement {
     rpc AddFunction(AddFunctionRequest) returns (AddFunctionResponse);
     rpc ArchiveFunction(ArchiveFunctionRequest) returns (ArchiveFunctionResponse);
+    rpc ListFunctions(ListFunctionsRequest) returns (ListFunctionsResponse);
+    rpc GetFunctionDetails(GetFunctionDetailsRequest) returns (GetFunctionDetailsResponse);
 }
