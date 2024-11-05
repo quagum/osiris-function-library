@@ -17,6 +17,14 @@ class CoreManagementServicer(core_management_pb2_grpc.CoreManagementServicer):
     def RemoveFunction(self, request, context):
         success, message = util.removeFunctionFromLibrary(request.function_name)
         return core_management_pb2.RemoveFunctionResponse(success=success, message=message)
+    
+    def ListFunctions(self, request, context):
+        success, message = util.listFunctionsInLibrary()
+        return core_management_pb2.ListFunctionsResponse(success=success, message=message)
+
+    def GetFunctionDetails(self, request, context):
+        success, message = util.getFunctionDetails(request.function_name)
+        return core_management_pb2.GetFunctionDetailsResponse(success=success, message=message)
 
     def PublishFunction(self, request, context):
         success, message = util.publishFunction(request.function_name)
