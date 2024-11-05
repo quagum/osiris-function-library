@@ -20,11 +20,25 @@ def updateFunctionInLibrary(function_name: str, code: str, version: str) -> bool
 def removeFunctionFromLibrary(function_name: str) -> bool:
     pass
 
-def listFunctionsInLibrary() -> list:
-    pass
+def listFunctionsInLibrary():
+    """Returns a tuple with success status and a message containing all functions in the library."""
+    if function_library:
+        function_list = "\n".join([
+            f"Name: {func['name']}, Version: {func['version']}, Runtime: {func['runtime_env']}"
+            for func in function_library.values()
+        ])
+        return True, function_list
+    else:
+        return False, "No functions available in the library."
 
-def getFunctionDetails(function_name: str) -> dict:
-    pass
+def getFunctionDetails(function_name: str):
+    """Returns a tuple with success status and a message containing details of a specific function."""
+    func = function_library.get(function_name)
+    if func:
+        details = f"Name: {func['name']}, Version: {func['version']}, Runtime: {func['runtime_env']}\nCode: {func['code']}"
+        return True, details
+    else:
+        return False, f"Function {function_name} not found."
 
 def rollbackFunctionVersion(function_name: str, target_version: str) -> bool:
     pass

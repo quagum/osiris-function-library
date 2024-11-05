@@ -17,7 +17,30 @@ message AddFunctionResponse {
     string message = 2; // Make sure this line exists
 }
 
+// API 4: ListFunctions
+// Request message for listing all functions (no additional input needed)
+message ListFunctionsRequest {}
 
+// Response message for listing functions
+message ListFunctionsResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+// API 5: GetFunctionDetails
+// Request message for getting function details
+message GetFunctionDetailsRequest {
+    string function_name = 1;
+}
+
+// Response message for getting function details
+message GetFunctionDetailsResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+
+// API 8/9
 // Request message for publish/unpublish a function 
 message PublishFunctionRequest {
     string function_name = 1;
@@ -43,6 +66,8 @@ message ArchiveFunctionResponse {
 // Service definition
 service CoreManagement {
     rpc AddFunction(AddFunctionRequest) returns (AddFunctionResponse);
+    rpc ListFunctions(ListFunctionsRequest) returns (ListFunctionsResponse);
+    rpc GetFunctionDetails(GetFunctionDetailsRequest) returns (GetFunctionDetailsResponse);
     rpc PublishFunction(PublishFunctionRequest) returns (PublishFunctionResponse);
     rpc UnpublishFunction(PublishFunctionRequest) returns (PublishFunctionResponse);
     rpc ArchiveFunction(ArchiveFunctionRequest) returns (ArchiveFunctionResponse);

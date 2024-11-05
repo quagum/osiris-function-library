@@ -10,6 +10,14 @@ class CoreManagementServicer(core_management_pb2_grpc.CoreManagementServicer):
         success, message = util.addFunctionToLibrary(request.function_name, request.code, request.runtime_env, request.version)
         return core_management_pb2.AddFunctionResponse(success=success, message=message)
     
+    def ListFunctions(self, request, context):
+        success, message = util.listFunctionsInLibrary()
+        return core_management_pb2.ListFunctionsResponse(success=success, message=message)
+
+    def GetFunctionDetails(self, request, context):
+        success, message = util.getFunctionDetails(request.function_name)
+        return core_management_pb2.GetFunctionDetailsResponse(success=success, message=message)
+    
     def PublishFunction(self, request, context):
         success, message = util.publishFunction(request.function_name)
         return core_management_pb2.PublishFunctionResponse(success=success, message=message)
