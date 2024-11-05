@@ -43,7 +43,7 @@ message RemoveFunctionResponse{
     string message = 2;
 }
 
-// API 9
+// API 8 and 9
 // Request message for publish/unpublish a function 
 message PublishFunctionRequest {
     string function_name = 1;
