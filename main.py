@@ -37,7 +37,20 @@ class CoreManagementServicer(core_management_pb2_grpc.CoreManagementServicer):
     def ArchiveFunction(self, request, context):
         success, message = util.archiveFunction(request.function_name)
         return core_management_pb2.ArchiveFunctionResponse(success=success, message=message)
-
+    def RollbackFunctionVersion(self, request, context):
+        success, message = util.rollbackFunctionVersion(request.function_name, request.target_version)
+        return core_management_pb2.RollbackFunctionVersionResponse(success=success, message=message)
+    def SearchFunctionByRuntime(self, request, context):
+        # Call the search function from util
+        functions = util.searchFunctionByRuntime(request.runtime)
+        return core_management_pb2.SearchFunctionByRuntimeResponse(
+            functions=[
+                core_management_pb2.FunctionDetails(
+                    function_name=func["function_name"],
+                    version=func["version"]
+                ) for func in functions
+            ]
+        )
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     core_management_pb2_grpc.add_CoreManagementServicer_to_server(CoreManagementServicer(), server)

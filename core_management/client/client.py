@@ -20,6 +20,12 @@ def run():
             version=version
         )
 
+        # Create a request to rollback a function
+        rollback_function_request = core_management_pb2.RollbackFunctionVersionRequest(
+            function_name=function_name,
+            target_version="1.0"
+        )
+
         # Create a request to update a function
         update_function_request = core_management_pb2.UpdateFunctionRequest(
             function_name=function_name,
@@ -50,6 +56,10 @@ def run():
             function_name=function_name
         )
 
+        # Create a request to search a function by runtime
+        search_function_by_runtime_request = core_management_pb2.SearchFunctionByRuntimeRequest(
+            runtime=runtime_env 
+        )
    
         # Call the AddFunction method on the stub
         add_function_response = stub.AddFunction(add_function_request)
@@ -59,6 +69,8 @@ def run():
         get_function_details_response = stub.GetFunctionDetails(get_function_details_request)
         publish_function_response = stub.PublishFunction(publish_function_request)
         unpublish_function_response = stub.UnpublishFunction(publish_function_request)
+        rollback_function_response = stub.RollbackFunctionVersion(rollback_function_request)
+        search_function_by_runtime_response = stub.SearchFunctionByRuntime(search_function_by_runtime_request)
         archive_function_response = stub.ArchiveFunction(archive_function_request)
         
 
@@ -71,6 +83,10 @@ def run():
         print(f"PublishFunction response: success={publish_function_response.success}, message='{publish_function_response.message}'")
         print(f"UnpublishFunction response: success={publish_function_response.success}, message='{unpublish_function_response.message}'")
         print(f"ArchiveFunction response: success={archive_function_response.success}, message='{archive_function_response.message}'")
+        print(f"RollbackFunctionVersion response: success={rollback_function_response.success}, message='{rollback_function_response.message}'")
+        print("SearchFunctionByRuntime response:")
+        for func in search_function_by_runtime_response.functions:
+            print(f"Function Name: {func.function_name}, Version: {func.version}")
 
 if __name__ == '__main__':
     run()
