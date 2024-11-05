@@ -17,18 +17,6 @@ message AddFunctionResponse {
     string message = 2; // Make sure this line exists
 }
 
-
-// Request message for publish/unpublish a function 
-message PublishFunctionRequest {
-    string function_name = 1;
-}
-
-// Response message for publish/unpublish a function
-message PublishFunctionResponse {
-    bool success = 1;
-    string message = 2;
-}
-
 // API 2 : updateFunctionInLibrary
 // Request to update function 
 message UpdateFunctionRequest{
@@ -51,11 +39,23 @@ message RemoveFunctionRequest{
 
 // Response to remove function
 message RemoveFunctionResponse{
-    bool sucess = 1;
+    bool success = 1;
     string message = 2;
 }
 
-// API 10
+// API 9
+// Request message for publish/unpublish a function 
+message PublishFunctionRequest {
+    string function_name = 1;
+}
+
+// Response message for publish/unpublish a function
+message PublishFunctionResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+// API 10 : archiveFunction
 message ArchiveFunctionRequest {
     string function_name = 1;
 }
@@ -69,6 +69,8 @@ message ArchiveFunctionResponse {
 // Service definition
 service CoreManagement {
     rpc AddFunction(AddFunctionRequest) returns (AddFunctionResponse);
+    rpc UpdateFunction(UpdateFunctionRequest) returns (UpdateFunctionResponse);
+    rpc RemoveFunction(RemoveFunctionRequest) returns (RemoveFunctionResponse);
     rpc PublishFunction(PublishFunctionRequest) returns (PublishFunctionResponse);
     rpc UnpublishFunction(PublishFunctionRequest) returns (PublishFunctionResponse);
     rpc ArchiveFunction(ArchiveFunctionRequest) returns (ArchiveFunctionResponse);

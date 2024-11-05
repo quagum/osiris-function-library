@@ -33,7 +33,7 @@ def run():
         )
 
         # Create a request to remove a function
-        delete_function_request = core_management_pb2.RemoveFunctionRequest(
+        remove_function_request = core_management_pb2.RemoveFunctionRequest(
             function_name=function_name,
         )
 
@@ -47,13 +47,15 @@ def run():
         # Call the AddFunction method on the stub
         add_function_response = stub.AddFunction(add_function_request)
         update_function_response = stub.UpdateFunction(update_function_request)
-        delete_function_response = stub.DeleteFunction(delete_function_request)
+        remove_function_response = stub.RemoveFunction(remove_function_request)
         publish_function_response = stub.PublishFunction(publish_function_request)
         unpublish_function_response = stub.UnpublishFunction(publish_function_request)
         archive_function_response = stub.ArchiveFunction(archive_function_request)
 
         # Print the response from the server
         print(f"AddFunction response: success={add_function_response.success}, message='{add_function_response.message}'")
+        print(f"UpdateFunction response: success={update_function_response.success}, message='{add_function_response.message}'")
+        print(f"RemoveFunction response: success={remove_function_response.success}, message='{remove_function_response.message}'")
         print(f"PublishFunction response: success={publish_function_response.success}, message='{publish_function_response.message}'")
         print(f"UnpublishFunction response: success={publish_function_response.success}, message='{unpublish_function_response.message}'")
         print(f"ArchiveFunction response: success={archive_function_response.success}, message='{archive_function_response.message}'")
